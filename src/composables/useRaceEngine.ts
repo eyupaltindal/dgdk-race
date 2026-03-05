@@ -8,6 +8,10 @@ import { calcFinalPerformance, calcInstantSpeed } from '../utils/performance.uti
 import { MIN_RACE_DURATION_MS, MAX_PERFORMANCE } from '../constants/game.constants'
 import { ROUND_RESULT_DISPLAY_DURATION } from '../constants/race.constants'
 
+// Module-level singleton state — shared across all useRaceEngine() calls
+let animationFrameId: number | null = null
+let lastTimestamp: number | null = null
+
 export function useRaceEngine() {
   const horseStore = useHorseStore()
   const scheduleStore = useScheduleStore()
@@ -18,6 +22,13 @@ export function useRaceEngine() {
   let currentSurface: Surface = 'grass'
   let finishCounter = 0
   let raceElapsedTime = 0
+
+  function stopAnimation(): void {
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId)
+      animationFrameId = null
+    }
+  }
 
   async function startRace(): Promise<void> {
     const round = scheduleStore.currentRound
@@ -41,22 +52,20 @@ export function useRaceEngine() {
 
     // Start racing
     horseStore.setGameStatus('racing')
-    raceStore.setLastTimestamp(null)
+    lastTimestamp = null
 
     const startTs = performance.now()
     raceStore.setRaceStartTime(startTs)
-    raceStore.setLastTimestamp(startTs)
+    lastTimestamp = startTs
 
-    const frameId = requestAnimationFrame(gameLoop)
-    raceStore.setAnimationFrameId(frameId)
+    animationFrameId = requestAnimationFrame(gameLoop)
   }
 
   function gameLoop(timestamp: number): void {
     if (horseStore.gameStatus !== 'racing') return
 
-    const lastTs = raceStore.lastTimestamp
-    const deltaTime = lastTs !== null ? timestamp - lastTs : 0
-    raceStore.setLastTimestamp(timestamp)
+    const deltaTime = lastTimestamp !== null ? timestamp - lastTimestamp : 0
+    lastTimestamp = timestamp
 
     raceElapsedTime += deltaTime
 
@@ -74,17 +83,17 @@ export function useRaceEngine() {
 
       raceStore.updatePosition(raceHorse.horseId, speed)
 
-      if (raceHorse.position >= 100) {
+      if ((raceStore.positions[raceHorse.horseId] ?? 0) >= 100) {
         finishCounter++
         raceStore.setFinished(raceHorse.horseId, raceElapsedTime, finishCounter)
       }
     }
 
     if (raceStore.isAllFinished) {
+      animationFrameId = null
       finishRace()
     } else {
-      const frameId = requestAnimationFrame(gameLoop)
-      raceStore.setAnimationFrameId(frameId)
+      animationFrameId = requestAnimationFrame(gameLoop)
     }
   }
 
@@ -136,25 +145,20 @@ export function useRaceEngine() {
   }
 
   function pauseRace(): void {
-    if (raceStore.animationFrameId !== null) {
-      cancelAnimationFrame(raceStore.animationFrameId)
-      raceStore.setAnimationFrameId(null)
-    }
+    stopAnimation()
     horseStore.setGameStatus('paused')
   }
 
   async function resumeRace(): Promise<void> {
     horseStore.setGameStatus('countdown')
-    raceStore.setLastTimestamp(null)
+    lastTimestamp = null
 
     await runCountdown()
 
     horseStore.setGameStatus('racing')
-    const ts = performance.now()
-    raceStore.setLastTimestamp(ts)
-    const frameId = requestAnimationFrame(gameLoop)
-    raceStore.setAnimationFrameId(frameId)
+    lastTimestamp = performance.now()
+    animationFrameId = requestAnimationFrame(gameLoop)
   }
 
-  return { startRace, pauseRace, resumeRace }
+  return { startRace, pauseRace, resumeRace, stopAnimation }
 }

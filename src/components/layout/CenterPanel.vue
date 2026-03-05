@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHorseStore } from '../../stores/horseStore'
 import { useRaceStore } from '../../stores/raceStore'
 import RaceTrack from '../race/RaceTrack.vue'
@@ -9,9 +10,11 @@ import GameControls from '../controls/GameControls.vue'
 const horseStore = useHorseStore()
 const raceStore = useRaceStore()
 
-const showLeaderboard = () =>
-  ['racing', 'paused', 'countdown', 'roundResult'].includes(horseStore.gameStatus) &&
-  raceStore.horses.length > 0
+const showLeaderboard = computed(
+  () =>
+    ['racing', 'paused', 'countdown', 'roundResult'].includes(horseStore.gameStatus) &&
+    raceStore.horses.length > 0,
+)
 </script>
 
 <template>
@@ -30,7 +33,7 @@ const showLeaderboard = () =>
       <RaceTrack />
 
       <!-- Live leaderboard during race -->
-      <div v-if="showLeaderboard()" class="rounded-2xl border border-gray-200 bg-white p-4">
+      <div v-if="showLeaderboard" class="rounded-2xl border border-gray-200 bg-white p-4">
         <h3 class="mb-3 text-sm font-bold uppercase tracking-wider text-gray-500">
           Anlık Sıralama
         </h3>

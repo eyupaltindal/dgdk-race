@@ -1,14 +1,20 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Round } from '../../types/schedule.types'
 import { useHorseStore } from '../../stores/horseStore'
 import SurfaceBadge from '../ui/SurfaceBadge.vue'
 import RoundResult from './RoundResult.vue'
 
-defineProps<{
+const props = defineProps<{
   round: Round
 }>()
 
 const horseStore = useHorseStore()
+
+// Pre-resolve horses once to avoid calling getHorseById 3× per horse in template
+const fixtureHorses = computed(() =>
+  props.round.horseIds.map((id) => horseStore.getHorseById(id)).filter(Boolean),
+)
 
 const statusConfig = {
   pending: { label: 'Bekliyor', classes: 'text-gray-400' },
@@ -41,15 +47,12 @@ const statusConfig = {
     <!-- Fixture: horse list (when not finished) -->
     <div v-if="round.result === null" class="mt-2 flex flex-wrap gap-1">
       <div
-        v-for="id in round.horseIds"
-        :key="id"
+        v-for="horse in fixtureHorses"
+        :key="horse!.id"
         class="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
       >
-        <div
-          class="h-2 w-2 rounded-full"
-          :style="{ backgroundColor: horseStore.getHorseById(id)?.color }"
-        />
-        {{ horseStore.getHorseById(id)?.name }} | {{ horseStore.getHorseById(id)?.baseCondition }}
+        <div class="h-2 w-2 rounded-full" :style="{ backgroundColor: horse!.color }" />
+        {{ horse!.name }} | {{ horse!.baseCondition }}
       </div>
     </div>
 

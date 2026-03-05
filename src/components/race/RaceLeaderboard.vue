@@ -28,7 +28,9 @@ const entries = computed(() =>
       <span v-if="entry.raceHorse.finished" class="text-xs text-yellow-600 font-semibold">
         {{ (entry.raceHorse.finishTime! / 1000).toFixed(2) }}s
       </span>
-      <span v-else class="text-xs text-gray-400"> {{ entry.raceHorse.position.toFixed(1) }}% </span>
+      <span v-else class="text-xs text-gray-400">
+        {{ (raceStore.positions[entry.raceHorse.horseId] ?? 0).toFixed(1) }}%
+      </span>
     </div>
   </div>
 </template>

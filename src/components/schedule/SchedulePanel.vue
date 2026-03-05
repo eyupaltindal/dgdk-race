@@ -11,11 +11,7 @@ const scheduleStore = useScheduleStore()
       <p class="text-sm text-gray-400">Program henüz oluşturulmadı</p>
     </div>
     <div v-else class="space-y-3">
-      <RoundCard
-        v-for="round in scheduleStore.schedule!.rounds"
-        :key="round.id"
-        :round="round"
-      />
+      <RoundCard v-for="round in scheduleStore.schedule!.rounds" :key="round.id" :round="round" />
     </div>
   </div>
 </template>

@@ -11,11 +11,7 @@ const horseStore = useHorseStore()
       <p class="text-sm text-gray-400">Atlar henüz oluşturulmadı</p>
     </div>
     <div v-else class="space-y-2">
-      <HorseCard
-        v-for="horse in horseStore.horses"
-        :key="horse.id"
-        :horse="horse"
-      />
+      <HorseCard v-for="horse in horseStore.horses" :key="horse.id" :horse="horse" />
     </div>
   </div>
 </template>

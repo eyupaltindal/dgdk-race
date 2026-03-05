@@ -10,14 +10,17 @@ export const useHorseStore = defineStore('horse', () => {
   const ui = ref({ showAbortModal: false })
 
   // Getters
-  const getHorseById = computed(() => (id: number) => horses.value.find((h) => h.id === id))
+  const horseMap = computed(() => new Map(horses.value.map((h) => [h.id, h])))
 
-  const eligibleHorses = computed(() => (roundIndex: number) =>
-    horses.value.filter((h) => {
-      if (h.consecutiveRaces >= 2) return false
-      if (h.lastRacedRound === roundIndex - 1) return false
-      return true
-    }),
+  const getHorseById = computed(() => (id: number) => horseMap.value.get(id))
+
+  const eligibleHorses = computed(
+    () => (roundIndex: number) =>
+      horses.value.filter((h) => {
+        if (h.consecutiveRaces >= 2) return false
+        if (h.lastRacedRound === roundIndex - 1) return false
+        return true
+      }),
   )
 
   // Actions
@@ -27,36 +30,29 @@ export const useHorseStore = defineStore('horse', () => {
   }
 
   function updateHorseStatuses(roundHorseIds: number[], roundIndex: number): void {
-    horses.value = horses.value.map((horse) => {
+    for (const horse of horses.value) {
       const raced = roundHorseIds.includes(horse.id)
-
       if (raced) {
         const newConsecutive = horse.consecutiveRaces + 1
-        return {
-          ...horse,
-          consecutiveRaces: newConsecutive,
-          lastRacedRound: roundIndex,
-          status: (newConsecutive >= 2 ? 'forcedRest' : 'resting') as HorseStatus,
-        }
+        horse.consecutiveRaces = newConsecutive
+        horse.lastRacedRound = roundIndex
+        horse.status = (newConsecutive >= 2 ? 'forcedRest' : 'resting') as HorseStatus
       } else {
-        // Did not race this round
         const wasForced = horse.consecutiveRaces >= 2
-        return {
-          ...horse,
-          consecutiveRaces: 0, // reset after rest
-          status: (wasForced ? 'idle' : 'resting') as HorseStatus,
-        }
+        horse.consecutiveRaces = 0
+        horse.status = (wasForced ? 'idle' : 'resting') as HorseStatus
       }
-    })
+    }
   }
 
   function setHorseStatusesForRacing(roundHorseIds: number[]): void {
-    horses.value = horses.value.map((horse) => {
-      const isRacing = roundHorseIds.includes(horse.id)
-      if (isRacing) return { ...horse, status: 'racing' as HorseStatus }
-      const status: HorseStatus = horse.consecutiveRaces >= 2 ? 'forcedRest' : 'resting'
-      return { ...horse, status }
-    })
+    for (const horse of horses.value) {
+      horse.status = roundHorseIds.includes(horse.id)
+        ? ('racing' as HorseStatus)
+        : horse.consecutiveRaces >= 2
+          ? ('forcedRest' as HorseStatus)
+          : ('resting' as HorseStatus)
+    }
   }
 
   function setGameStatus(status: GameStatus): void {
@@ -78,7 +74,9 @@ export const useHorseStore = defineStore('horse', () => {
   }
 
   function setAllHorsesIdle(): void {
-    horses.value = horses.value.map((horse) => ({ ...horse, status: 'idle' as HorseStatus }))
+    for (const horse of horses.value) {
+      horse.status = 'idle' as HorseStatus
+    }
   }
 
   function reset(): void {

@@ -33,13 +33,6 @@ function handleResume() {
 }
 
 function handleAbort() {
-  // Pause animation if running
-  if (horseStore.gameStatus === 'racing') {
-    if (raceStore.animationFrameId !== null) {
-      cancelAnimationFrame(raceStore.animationFrameId)
-      raceStore.setAnimationFrameId(null)
-    }
-  }
   horseStore.openAbortModal()
 }
 

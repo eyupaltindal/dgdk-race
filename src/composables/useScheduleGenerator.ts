@@ -1,6 +1,11 @@
 import type { Horse, Surface } from '../types/horse.types'
 import type { Schedule, Round } from '../types/schedule.types'
-import { SURFACES, ROUND_DISTANCES, TOTAL_ROUNDS, HORSES_PER_RACE } from '../constants/race.constants'
+import {
+  SURFACES,
+  ROUND_DISTANCES,
+  TOTAL_ROUNDS,
+  HORSES_PER_RACE,
+} from '../constants/race.constants'
 import { randomInt, pickRandom } from '../utils/random.utils'
 
 export function useScheduleGenerator() {

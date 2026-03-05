@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { Horse } from '../../types/horse.types'
 import type { RaceHorse } from '../../types/race.types'
+import { useRaceStore } from '../../stores/raceStore'
 import HorseAvatar from './HorseAvatar.vue'
 
 const props = defineProps<{
@@ -10,9 +11,12 @@ const props = defineProps<{
   position: number // 1-based lane number
 }>()
 
+const raceStore = useRaceStore()
+
 // Map 0-100 position to CSS percentage (leave margin for the horse width)
+// Reads from raceStore.positions — reactive Record updated at 60fps, independent of horses array
 const leftPercent = computed(() => {
-  const pos = Math.min(props.raceHorse.position, 100)
+  const pos = Math.min(raceStore.positions[props.raceHorse.horseId] ?? 0, 100)
   return `calc(${pos}% - 48px)`
 })
 </script>
