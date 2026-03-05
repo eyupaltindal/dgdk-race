@@ -40,7 +40,7 @@ function handleAbort() {
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-2">
+  <div class="flex flex-wrap items-center justify-center gap-2">
     <!-- Generate -->
     <button
       class="rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
