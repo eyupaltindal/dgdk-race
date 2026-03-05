@@ -1,6 +1,10 @@
 # dgdk-race
 
-This template should help get you started developing with Vue 3 in Vite.
+A high-performance horse racing simulation built with **Vue 3**, **Pinia**, and **Tailwind CSS 4**, featuring a custom race engine driven by **requestAnimationFrame** and robust E2E testing with Playwright.
+
+## Live Demo
+
+https://eyupaltindal.github.io/dgdk-race/
 
 ## Recommended IDE Setup
 
