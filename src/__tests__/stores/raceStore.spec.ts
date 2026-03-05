@@ -14,11 +14,11 @@ describe('raceStore', () => {
       expect(store.horses).toHaveLength(3)
       expect(store.horses[0]).toMatchObject({
         horseId: 1,
-        position: 0,
         finished: false,
         finishTime: null,
         finishPosition: null,
       })
+      expect(store.positions[1]).toBe(0)
     })
 
     it('creates a horse entry for each provided id', () => {
@@ -41,14 +41,14 @@ describe('raceStore', () => {
       const store = useRaceStore()
       store.initRaceHorses([1])
       store.updatePosition(1, 10)
-      expect(store.horses[0]?.position).toBe(10)
+      expect(store.positions[1]).toBe(10)
     })
 
     it('clamps position at 100', () => {
       const store = useRaceStore()
       store.initRaceHorses([1])
       store.updatePosition(1, 150)
-      expect(store.horses[0]?.position).toBe(100)
+      expect(store.positions[1]).toBe(100)
     })
 
     it('accumulates multiple deltas', () => {
@@ -56,7 +56,7 @@ describe('raceStore', () => {
       store.initRaceHorses([1])
       store.updatePosition(1, 30)
       store.updatePosition(1, 25)
-      expect(store.horses[0]?.position).toBe(55)
+      expect(store.positions[1]).toBe(55)
     })
 
     it('does not update position of a finished horse', () => {
@@ -64,14 +64,14 @@ describe('raceStore', () => {
       store.initRaceHorses([1])
       store.setFinished(1, 10000, 1)
       store.updatePosition(1, 5)
-      expect(store.horses[0]?.position).toBe(100)
+      expect(store.positions[1]).toBe(100)
     })
 
     it('does not affect other horses', () => {
       const store = useRaceStore()
       store.initRaceHorses([1, 2])
       store.updatePosition(1, 50)
-      expect(store.horses[1]?.position).toBe(0)
+      expect(store.positions[2]).toBe(0)
     })
   })
 
@@ -84,8 +84,8 @@ describe('raceStore', () => {
         finished: true,
         finishTime: 12500,
         finishPosition: 1,
-        position: 100,
       })
+      expect(store.positions[1]).toBe(100)
     })
 
     it('sets position to 100 regardless of current position', () => {
@@ -93,7 +93,7 @@ describe('raceStore', () => {
       store.initRaceHorses([1])
       store.updatePosition(1, 70)
       store.setFinished(1, 12500, 1)
-      expect(store.horses[0]?.position).toBe(100)
+      expect(store.positions[1]).toBe(100)
     })
   })
 
@@ -155,16 +155,16 @@ describe('raceStore', () => {
       expect(lb[2]?.horseId).toBe(3) // finishPosition 3
     })
 
-    it('ranks running horses by position descending', () => {
+    it('keeps running horses in insertion order', () => {
       const store = useRaceStore()
       store.initRaceHorses([1, 2, 3])
       store.updatePosition(1, 20)
       store.updatePosition(2, 60)
       store.updatePosition(3, 40)
       const lb = store.leaderboard
-      expect(lb[0]?.horseId).toBe(2)
-      expect(lb[1]?.horseId).toBe(3)
-      expect(lb[2]?.horseId).toBe(1)
+      expect(lb[0]?.horseId).toBe(1)
+      expect(lb[1]?.horseId).toBe(2)
+      expect(lb[2]?.horseId).toBe(3)
     })
   })
 
@@ -190,17 +190,18 @@ describe('raceStore', () => {
     })
   })
 
-  describe('getHorsePosition getter', () => {
-    it('returns current position of a horse', () => {
+  describe('positions map', () => {
+    it('reads current position of a horse', () => {
       const store = useRaceStore()
       store.initRaceHorses([1])
       store.updatePosition(1, 42)
-      expect(store.getHorsePosition(1)).toBe(42)
+      expect(store.positions[1]).toBe(42)
     })
 
-    it('returns 0 for unknown horse id', () => {
+    it('returns undefined for unknown horse id and can be nullish-coalesced to 0', () => {
       const store = useRaceStore()
-      expect(store.getHorsePosition(999)).toBe(0)
+      expect(store.positions[999]).toBeUndefined()
+      expect(store.positions[999] ?? 0).toBe(0)
     })
   })
 
@@ -226,11 +227,12 @@ describe('raceStore', () => {
       expect(store.raceStartTime).toBeNull()
     })
 
-    it('clears lastTimestamp', () => {
+    it('clears positions map', () => {
       const store = useRaceStore()
-      store.setLastTimestamp(9999)
+      store.initRaceHorses([1])
+      store.updatePosition(1, 40)
       store.reset()
-      expect(store.lastTimestamp).toBeNull()
+      expect(store.positions).toEqual({})
     })
   })
 })
