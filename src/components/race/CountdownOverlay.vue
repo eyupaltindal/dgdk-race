@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRaceStore } from '../../stores/raceStore'
-import { useHorseStore } from '../../stores/horseStore'
+import { useRaceStore } from '@/stores/raceStore'
+import { useHorseStore } from '@/stores/horseStore'
 import { computed } from 'vue'
 
 const raceStore = useRaceStore()

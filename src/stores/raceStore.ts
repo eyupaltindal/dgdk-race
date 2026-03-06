@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed, shallowRef } from 'vue'
-import type { RaceHorse } from '../types/race.types'
+import type { RaceHorse } from '@/types/race.types'
 
 export const useRaceStore = defineStore('race', () => {
   const countdown = ref<3 | 2 | 1 | 'GO!' | null>(null)

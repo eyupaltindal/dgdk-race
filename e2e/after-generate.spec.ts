@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('After Generate — Horse List & Schedule', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/dgdk-race/')
-    await page.waitForSelector('h1')
+    await page.locator('h1').waitFor()
     await page.getByRole('button', { name: 'Oluştur' }).click()
   })
 
@@ -12,7 +12,7 @@ test.describe('After Generate — Horse List & Schedule', () => {
   })
 
   test('horse list empty state disappears', async ({ page }) => {
-    await expect(page.getByText('Atlar henüz oluşturulmadı')).not.toBeVisible()
+    await expect(page.getByText('Atlar henüz oluşturulmadı')).toBeHidden()
   })
 
   test('first horse "Yıldırım" appears in the horse list', async ({ page }) => {
@@ -28,7 +28,7 @@ test.describe('After Generate — Horse List & Schedule', () => {
   })
 
   test('schedule empty state disappears', async ({ page }) => {
-    await expect(page.getByText('Program henüz oluşturulmadı')).not.toBeVisible()
+    await expect(page.getByText('Program henüz oluşturulmadı')).toBeHidden()
   })
 
   test('schedule shows "Tur 1"', async ({ page }) => {
@@ -50,7 +50,7 @@ test.describe('After Generate — Horse List & Schedule', () => {
   })
 
   test('"İptal Et" button is still not visible', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'İptal Et' })).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'İptal Et' })).toBeHidden()
   })
 
   test('race track still shows "Yarış başlatılmadı"', async ({ page }) => {

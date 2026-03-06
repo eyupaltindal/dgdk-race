@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Surface } from '../../types/horse.types'
+import type { Surface } from '@/types/race.types'
 
 defineProps<{
   surface: Surface

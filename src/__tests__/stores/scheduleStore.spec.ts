@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import type { Schedule } from '../../types/schedule.types'
-import type { Result } from '../../types/result.types'
+import type { Schedule } from '@/types/schedule.types'
+import type { Result } from '@/types/result.types'
 
 function makeMockSchedule(): Schedule {
   return {
@@ -27,7 +27,7 @@ vi.mock('../../composables/useScheduleGenerator', () => ({
   }),
 }))
 
-import { useScheduleStore } from '../../stores/scheduleStore'
+import { useScheduleStore } from '@/stores/scheduleStore'
 
 describe('scheduleStore', () => {
   beforeEach(() => {

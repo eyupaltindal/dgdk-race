@@ -1,4 +1,4 @@
-import type { Horse, SurfaceModifiers } from '../types/horse.types'
+import type { Horse, SurfaceModifiers } from '@/types/horse.types'
 import {
   BASE_SPEED_WEIGHT,
   LUCK_SPEED_WEIGHT,
@@ -9,10 +9,10 @@ import {
   SURFACE_MODIFIER_FAVORITE_MAX,
   SURFACE_MODIFIER_OTHER_MIN,
   SURFACE_MODIFIER_OTHER_MAX,
-} from '../constants/game.constants'
-import { SURFACES } from '../constants/race.constants'
+} from '@/constants/game.constants'
+import { SURFACES } from '@/constants/race.constants'
 import type { Surface } from '@/types/race.types'
-import { randomBetween } from './random.utils'
+import { randomBetween } from '@/utils/random.utils'
 
 export function calcFatigueModifier(consecutiveRaces: number): number {
   return FATIGUE_MODIFIERS[consecutiveRaces] ?? (FATIGUE_MODIFIERS[2] as number)

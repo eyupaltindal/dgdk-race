@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Round } from '../../types/schedule.types'
-import { useHorseStore } from '../../stores/horseStore'
-import SurfaceBadge from '../ui/SurfaceBadge.vue'
-import RoundResult from './RoundResult.vue'
+import type { Round } from '@/types/schedule.types'
+import { useHorseStore } from '@/stores/horseStore'
+import SurfaceBadge from '@/components/ui/SurfaceBadge.vue'
+import RoundResult from '@/components/schedule/RoundResult.vue'
 
 const props = defineProps<{
   round: Round

@@ -1,4 +1,4 @@
-import type { Surface } from '../constants/race.constants'
+import type { Surface } from '@/types/race.types'
 
 export type HorseStatus = 'idle' | 'racing' | 'resting' | 'forcedRest'
 

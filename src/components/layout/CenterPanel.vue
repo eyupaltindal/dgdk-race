@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useHorseStore } from '../../stores/horseStore'
-import { useRaceStore } from '../../stores/raceStore'
-import RaceTrack from '../race/RaceTrack.vue'
-import RaceInfo from '../race/RaceInfo.vue'
-import RaceLeaderboard from '../race/RaceLeaderboard.vue'
-import GameControls from '../controls/GameControls.vue'
+import { useHorseStore } from '@/stores/horseStore'
+import { useRaceStore } from '@/stores/raceStore'
+import RaceTrack from '@/components/race/RaceTrack.vue'
+import RaceInfo from '@/components/race/RaceInfo.vue'
+import RaceLeaderboard from '@/components/race/RaceLeaderboard.vue'
+import GameControls from '@/components/controls/GameControls.vue'
 
 const horseStore = useHorseStore()
 const raceStore = useRaceStore()

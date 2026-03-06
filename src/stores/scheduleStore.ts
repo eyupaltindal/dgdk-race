@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Schedule, Round } from '../types/schedule.types'
-import type { Result } from '../types/result.types'
-import type { Horse } from '../types/horse.types'
-import { useScheduleGenerator } from '../composables/useScheduleGenerator'
+import type { Schedule, Round } from '@/types/schedule.types'
+import type { Result } from '@/types/result.types'
+import type { Horse } from '@/types/horse.types'
+import { useScheduleGenerator } from '@/composables/useScheduleGenerator'
 
 export const useScheduleStore = defineStore('schedule', () => {
   const schedule = ref<Schedule | null>(null)

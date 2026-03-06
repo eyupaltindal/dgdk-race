@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScheduleStore } from '../../stores/scheduleStore'
-import SurfaceBadge from '../ui/SurfaceBadge.vue'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import SurfaceBadge from '@/components/ui/SurfaceBadge.vue'
 
 const scheduleStore = useScheduleStore()
 </script>

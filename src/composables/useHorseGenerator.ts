@@ -1,8 +1,8 @@
-import type { Horse } from '../types/horse.types'
-import { HORSE_NAMES, HORSE_COLORS } from '../constants/horse.constants'
-import { SURFACES, TOTAL_HORSES } from '../constants/race.constants'
-import { randomInt } from '../utils/random.utils'
-import { generateSurfaceModifiers } from '../utils/performance.utils'
+import type { Horse } from '@/types/horse.types'
+import { HORSE_NAMES, HORSE_COLORS } from '@/constants/horse.constants'
+import { SURFACES, TOTAL_HORSES } from '@/constants/race.constants'
+import { randomInt } from '@/utils/random.utils'
+import { generateSurfaceModifiers } from '@/utils/performance.utils'
 import type { Surface } from '@/types/race.types'
 
 export function useHorseGenerator() {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useHorseStore } from '../../stores/horseStore'
-import HorseCard from './HorseCard.vue'
+import { useHorseStore } from '@/stores/horseStore'
+import HorseCard from '@/components/horse/HorseCard.vue'
 
 const horseStore = useHorseStore()
 </script>

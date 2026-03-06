@@ -4,9 +4,9 @@ import {
   calcFinalPerformance,
   calcInstantSpeed,
   generateSurfaceModifiers,
-} from '../../utils/performance.utils'
-import type { Horse } from '../../types/horse.types'
-import { SURFACES } from '../../constants/race.constants'
+} from '@/utils/performance.utils'
+import type { Horse } from '@/types/horse.types'
+import { SURFACES } from '@/constants/race.constants'
 
 describe('performance.utils', () => {
   afterEach(() => {

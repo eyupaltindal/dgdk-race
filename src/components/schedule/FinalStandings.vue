@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useScheduleStore } from '../../stores/scheduleStore'
-import SurfaceBadge from '../ui/SurfaceBadge.vue'
-import type { Surface } from '../../types/horse.types'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import SurfaceBadge from '@/components/ui/SurfaceBadge.vue'
+import type { Surface } from '@/types/race.types'
 
 const scheduleStore = useScheduleStore()
 

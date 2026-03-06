@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { randomBetween, randomInt, shuffle, pickRandom } from '../../utils/random.utils'
+import { randomBetween, randomInt, shuffle, pickRandom } from '@/utils/random.utils'
 
 describe('random.utils', () => {
   afterEach(() => {

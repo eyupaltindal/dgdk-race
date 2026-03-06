@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScheduleStore } from '../../stores/scheduleStore'
-import RoundCard from './RoundCard.vue'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import RoundCard from '@/components/schedule/RoundCard.vue'
 
 const scheduleStore = useScheduleStore()
 </script>

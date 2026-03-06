@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRaceStore } from '../../stores/raceStore'
-import { useHorseStore } from '../../stores/horseStore'
-import { useScheduleStore } from '../../stores/scheduleStore'
-import type { Surface } from '../../types/horse.types'
-import TrackLane from './TrackLane.vue'
-import CountdownOverlay from './CountdownOverlay.vue'
-import SurfaceBadge from '../ui/SurfaceBadge.vue'
+import { useRaceStore } from '@/stores/raceStore'
+import { useHorseStore } from '@/stores/horseStore'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import type { Surface } from '@/types/race.types'
+import TrackLane from '@/components/race/TrackLane.vue'
+import CountdownOverlay from '@/components/race/CountdownOverlay.vue'
+import SurfaceBadge from '@/components/ui/SurfaceBadge.vue'
 
 const raceStore = useRaceStore()
 const horseStore = useHorseStore()

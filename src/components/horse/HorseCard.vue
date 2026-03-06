@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Horse, Surface } from '../../types/horse.types'
-import ConditionBar from '../ui/ConditionBar.vue'
-import SurfaceBadge from '../ui/SurfaceBadge.vue'
+import type { Surface } from '@/types/race.types'
+import ConditionBar from '@/components/ui/ConditionBar.vue'
+import SurfaceBadge from '@/components/ui/SurfaceBadge.vue'
+import type { Horse } from '@/types/horse.types'
 
 defineProps<{
   horse: Horse

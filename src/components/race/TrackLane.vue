@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Horse } from '../../types/horse.types'
-import type { RaceHorse } from '../../types/race.types'
-import { useRaceStore } from '../../stores/raceStore'
-import HorseAvatar from './HorseAvatar.vue'
+import type { Horse } from '@/types/horse.types'
+import type { RaceHorse } from '@/types/race.types'
+import { useRaceStore } from '@/stores/raceStore'
+import HorseAvatar from '@/components/race/HorseAvatar.vue'
 
 const props = defineProps<{
   horse: Horse

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import App from '../App.vue'
+import App from '@/App.vue'
 
 describe('App', () => {
   beforeEach(() => {

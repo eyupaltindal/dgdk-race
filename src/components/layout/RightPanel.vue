@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useHorseStore } from '../../stores/horseStore'
-import SchedulePanel from '../schedule/SchedulePanel.vue'
-import FinalStandings from '../schedule/FinalStandings.vue'
+import { useHorseStore } from '@/stores/horseStore'
+import SchedulePanel from '@/components/schedule/SchedulePanel.vue'
+import FinalStandings from '@/components/schedule/FinalStandings.vue'
 
 const horseStore = useHorseStore()
 </script>

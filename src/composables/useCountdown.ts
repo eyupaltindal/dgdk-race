@@ -1,5 +1,5 @@
-import { useRaceStore } from '../stores/raceStore'
-import { COUNTDOWN_STEPS, COUNTDOWN_INTERVAL } from '../constants/game.constants'
+import { useRaceStore } from '@/stores/raceStore'
+import { COUNTDOWN_STEPS, COUNTDOWN_INTERVAL } from '@/constants/game.constants'
 
 export function useCountdown() {
   function runCountdown(): Promise<void> {

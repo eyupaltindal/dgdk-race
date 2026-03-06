@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Result } from '../../types/result.types'
+import type { Result } from '@/types/result.types'
 
 defineProps<{
   result: Result

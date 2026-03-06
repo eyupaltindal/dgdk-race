@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Horse, HorseStatus } from '../types/horse.types'
-import type { GameStatus } from '../types/game.types'
-import { useHorseGenerator } from '../composables/useHorseGenerator'
+import type { Horse, HorseStatus } from '@/types/horse.types'
+import type { GameStatus } from '@/types/game.types'
+import { useHorseGenerator } from '@/composables/useHorseGenerator'
 
 export const useHorseStore = defineStore('horse', () => {
   const horses = ref<Horse[]>([])

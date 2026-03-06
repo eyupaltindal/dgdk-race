@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Layout — Initial State', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/dgdk-race/')
-    await page.waitForSelector('h1')
+    await page.locator('h1').waitFor()
   })
 
   test('shows "Atlar Yarışıyor" as the page heading', async ({ page }) => {
@@ -39,10 +39,10 @@ test.describe('Layout — Initial State', () => {
   })
 
   test('"Duraklat" button is not visible', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'Duraklat' })).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'Duraklat' })).toBeHidden()
   })
 
   test('"İptal Et" button is not visible', async ({ page }) => {
-    await expect(page.getByRole('button', { name: 'İptal Et' })).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'İptal Et' })).toBeHidden()
   })
 })

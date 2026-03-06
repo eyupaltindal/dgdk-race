@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { useCountdown } from '../../composables/useCountdown'
-import { useRaceStore } from '../../stores/raceStore'
+import { useCountdown } from '@/composables/useCountdown'
+import { useRaceStore } from '@/stores/raceStore'
 
 describe('useCountdown', () => {
   beforeEach(() => {

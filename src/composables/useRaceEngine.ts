@@ -1,12 +1,12 @@
-import { useHorseStore } from '../stores/horseStore'
-import { useScheduleStore } from '../stores/scheduleStore'
-import { useRaceStore } from '../stores/raceStore'
-import { useCountdown } from './useCountdown'
+import { useHorseStore } from '@/stores/horseStore'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import { useRaceStore } from '@/stores/raceStore'
+import { useCountdown } from '@/composables/useCountdown'
 import type { Surface } from '@/types/race.types'
-import type { FinishEntry, Result } from '../types/result.types'
-import { calcFinalPerformance, calcInstantSpeed } from '../utils/performance.utils'
-import { MIN_RACE_DURATION_MS, MAX_PERFORMANCE } from '../constants/game.constants'
-import { ROUND_RESULT_DISPLAY_DURATION } from '../constants/race.constants'
+import type { FinishEntry, Result } from '@/types/result.types'
+import { calcFinalPerformance, calcInstantSpeed } from '@/utils/performance.utils'
+import { MIN_RACE_DURATION_MS, MAX_PERFORMANCE } from '@/constants/game.constants'
+import { ROUND_RESULT_DISPLAY_DURATION } from '@/constants/race.constants'
 
 // Module-level singleton state — shared across all useRaceEngine() calls
 let animationFrameId: number | null = null

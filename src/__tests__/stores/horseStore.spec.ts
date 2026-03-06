@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import type { Horse } from '../../types/horse.types'
+import type { Horse } from '@/types/horse.types'
 
 // Mock useHorseGenerator before importing the store
 vi.mock('../../composables/useHorseGenerator', () => ({
@@ -20,7 +20,7 @@ vi.mock('../../composables/useHorseGenerator', () => ({
   }),
 }))
 
-import { useHorseStore } from '../../stores/horseStore'
+import { useHorseStore } from '@/stores/horseStore'
 
 describe('horseStore', () => {
   beforeEach(() => {

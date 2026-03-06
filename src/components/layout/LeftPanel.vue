@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HorseList from '../horse/HorseList.vue'
+import HorseList from '@/components/horse/HorseList.vue'
 </script>
 
 <template>

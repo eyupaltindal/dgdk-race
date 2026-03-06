@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useHorseStore } from '../../stores/horseStore'
-import { useScheduleStore } from '../../stores/scheduleStore'
-import { useRaceStore } from '../../stores/raceStore'
-import { useRaceEngine } from '../../composables/useRaceEngine'
+import { useHorseStore } from '@/stores/horseStore'
+import { useScheduleStore } from '@/stores/scheduleStore'
+import { useRaceStore } from '@/stores/raceStore'
+import { useRaceEngine } from '@/composables/useRaceEngine'
 
 const horseStore = useHorseStore()
 const scheduleStore = useScheduleStore()

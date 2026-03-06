@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import AppHeader from './components/layout/AppHeader.vue'
-import LeftPanel from './components/layout/LeftPanel.vue'
-import CenterPanel from './components/layout/CenterPanel.vue'
-import RightPanel from './components/layout/RightPanel.vue'
-import AbortModal from './components/ui/AbortModal.vue'
+import AppHeader from '@/components/layout/AppHeader.vue'
+import LeftPanel from '@/components/layout/LeftPanel.vue'
+import CenterPanel from '@/components/layout/CenterPanel.vue'
+import RightPanel from '@/components/layout/RightPanel.vue'
+import AbortModal from '@/components/ui/AbortModal.vue'
 </script>
 
 <template>
