@@ -1,4 +1,4 @@
-import type { Horse, Surface, SurfaceModifiers } from '../types/horse.types'
+import type { Horse, SurfaceModifiers } from '../types/horse.types'
 import {
   BASE_SPEED_WEIGHT,
   LUCK_SPEED_WEIGHT,
@@ -11,6 +11,7 @@ import {
   SURFACE_MODIFIER_OTHER_MAX,
 } from '../constants/game.constants'
 import { SURFACES } from '../constants/race.constants'
+import type { Surface } from '@/types/race.types'
 import { randomBetween } from './random.utils'
 
 export function calcFatigueModifier(consecutiveRaces: number): number {

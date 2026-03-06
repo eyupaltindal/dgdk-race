@@ -1,5 +1,3 @@
-import type { Surface } from '../types/horse.types'
-
 export const ROUND_DISTANCES: Record<number, number> = {
   1: 1200,
   2: 1400,
@@ -9,7 +7,7 @@ export const ROUND_DISTANCES: Record<number, number> = {
   6: 2200,
 }
 
-export const SURFACES: Surface[] = ['grass', 'sand', 'dirt', 'synthetic']
+export const SURFACES = ['grass', 'sand', 'dirt', 'synthetic'] as const
 
 export const TOTAL_HORSES = 20
 export const HORSES_PER_RACE = 10

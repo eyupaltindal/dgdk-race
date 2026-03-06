@@ -1,4 +1,4 @@
-import type { Surface } from './horse.types'
+import type { Surface } from './race.types'
 import type { Result } from './result.types'
 
 export type RoundStatus = 'pending' | 'racing' | 'finished'

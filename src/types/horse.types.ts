@@ -1,4 +1,4 @@
-export type Surface = 'grass' | 'sand' | 'dirt' | 'synthetic'
+import type { Surface } from '../constants/race.constants'
 
 export type HorseStatus = 'idle' | 'racing' | 'resting' | 'forcedRest'
 
