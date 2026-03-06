@@ -109,10 +109,9 @@ describe('performance.utils', () => {
       vi.spyOn(Math, 'random').mockReturnValue(0.5)
       const modifiers = generateSurfaceModifiers('grass')
       const favoriteVal = modifiers['grass']
-      for (const surface of SURFACES) {
-        if (surface !== 'grass') {
-          expect(favoriteVal).toBeGreaterThan(modifiers[surface])
-        }
+      const nonFavorites = SURFACES.filter((s) => s !== 'grass')
+      for (const surface of nonFavorites) {
+        expect(favoriteVal).toBeGreaterThan(modifiers[surface])
       }
     })
 
@@ -127,10 +126,9 @@ describe('performance.utils', () => {
       vi.spyOn(Math, 'random').mockReturnValue(0.5)
       const modifiers = generateSurfaceModifiers('dirt')
       const favoriteVal = modifiers['dirt']
-      for (const surface of SURFACES) {
-        if (surface !== 'dirt') {
-          expect(modifiers[surface]).toBeLessThan(favoriteVal)
-        }
+      const nonFavorites = SURFACES.filter((s) => s !== 'dirt')
+      for (const surface of nonFavorites) {
+        expect(modifiers[surface]).toBeLessThan(favoriteVal)
       }
     })
 
@@ -139,10 +137,9 @@ describe('performance.utils', () => {
         vi.spyOn(Math, 'random').mockReturnValue(0.5)
         const modifiers = generateSurfaceModifiers(fav)
         const favoriteVal = modifiers[fav]
-        for (const surface of SURFACES) {
-          if (surface !== fav) {
-            expect(favoriteVal).toBeGreaterThan(modifiers[surface])
-          }
+        const nonFavorites = SURFACES.filter((s) => s !== fav)
+        for (const surface of nonFavorites) {
+          expect(favoriteVal).toBeGreaterThan(modifiers[surface])
         }
         vi.restoreAllMocks()
       }
